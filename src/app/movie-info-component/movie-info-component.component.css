@@ -1,0 +1,57 @@
+.film-box{
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    margin-top: 100px;
+}
+.film-item-main{
+    background-color: gray;
+    padding-top: 7px;
+}
+.film-item-main p {
+    padding: 0px 0px 10px 15px;
+    margin: 0px;
+    font-weight: lighter;
+
+}
+h3,p{
+    color: white;
+}
+.score-info{
+    display: flex;
+}
+.score-info p{
+    margin-right: 15px;
+    margin-top: 0px;
+    font-family: sans-serif;
+    font-size: 2ch;
+}
+.film-info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+.film-info h3{
+font-size: 4ch;
+font-weight: 400;
+font-family: sans-serif;
+}
+.vl{
+    border-left: 2px solid gray;
+    height: 20px;
+    display: flex;
+}
+.vl p{
+    padding-left: 20px;
+}
+.gl{
+    border-top: 2px solid gray;
+    width: 100%;
+    border-bottom: 2px solid gray;
+    margin-top: 20px;
+}
+.gl p{
+    margin: 35px 0px 35px 0px;
+    font-family: cursive;
+    font-size: 2ch;
+}
