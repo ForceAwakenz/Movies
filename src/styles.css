@@ -4,3 +4,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.highlighter {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 7px #191e63;
+    transition: all 100ms;
+}

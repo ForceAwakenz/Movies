@@ -6,13 +6,15 @@ import { MoviesComponent } from './movies/movies.component';
 import { MovieItemComponent } from './movie-item/movie-item.component';
 import { MovieDataService } from './movie-data.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HighlightDirective } from './shared/directives/highlight.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesComponent,
     MovieItemComponent,
-    NavbarComponent
+    NavbarComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
