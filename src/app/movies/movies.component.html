@@ -1,3 +1,9 @@
-<!-- <app-movie-item [movieData]=""></app-movie-item> -->
 
-<p></p>
+<main *ngIf="dataBase; else: sorry" >
+    <app-movie-item *ngFor="let movie of dataBase | slice:0:20 ; let indx = index;" [movieIndex]="indx"></app-movie-item>
+</main>
+<ng-template #sorry>
+    <p class="service-message">
+        Loading server data ...
+    </p>
+</ng-template>

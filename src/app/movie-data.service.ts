@@ -4,12 +4,16 @@
 //   providedIn: 'root'
 // })
 export class MovieDataService {
-  dbPromise: Promise<any>;
+  baseUrl = 'http://api.themoviedb.org/';
+  nowPlayingDBPromise: Promise<any>;
+  nowPlayingUrl = '3/movie/now_playing';
 
   constructor() { 
-    this.dbPromise = fetch('http://api.themoviedb.org/3/movie/now_playing?api_key=ebea8cfca72fdff8d2624ad7bbf78e4c')
+    this.nowPlayingDBPromise = fetch(`${this.baseUrl}3/movie/now_playing?api_key=ebea8cfca72fdff8d2624ad7bbf78e4c`)
       .then( d => d.json());
   }
+
+
 
 
 }

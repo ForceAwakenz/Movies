@@ -1,0 +1,23 @@
+main {
+    margin: 0 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+app-movie-item {
+    margin: 0.9vw;
+    width: 17%;
+    box-shadow: 0px 0px 7px #555;
+    background-color: #191e6396;
+    transition: all 100ms;
+}
+
+app-movie-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 7px #191e63;
+}
+
+p.service-message {
+    text-align: center;
+}

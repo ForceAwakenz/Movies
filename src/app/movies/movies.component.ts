@@ -7,10 +7,10 @@ import { MovieDataService } from '../movie-data.service';
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent implements OnInit {
-dataBase : any = [];
+dataBase : any;
 
   constructor(private movieDataService: MovieDataService) { 
-    movieDataService.dbPromise.then(data => this.dataBase = data.results);
+    movieDataService.nowPlayingDBPromise.then(data => this.dataBase = data.results);
 }
   
   ngOnInit(): void {    

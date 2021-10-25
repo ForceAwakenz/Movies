@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MovieDataService } from '../movie-data.service';
 
 @Component({
   selector: 'app-movie-item',
@@ -6,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movie-item.component.css']
 })
 export class MovieItemComponent implements OnInit {
-
-  constructor() { }
+  dataBase : any;
+  @Input() movieIndex!: number;
+  
+  constructor(private movieDataService: MovieDataService) { 
+    movieDataService.nowPlayingDBPromise.then(data => this.dataBase = data.results);
+  }
 
   ngOnInit(): void {
   }
