@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MovieDataService } from '../movie-data.service';
 
 @Component({
@@ -8,10 +8,11 @@ import { MovieDataService } from '../movie-data.service';
 })
 export class MoviesComponent implements OnInit {
 dataBase : any;
+@Input() category = '';
 
   constructor(private movieDataService: MovieDataService) { 
     movieDataService.nowPlayingDBPromise.then(data => this.dataBase = data.results);
-}
+  }
   
   ngOnInit(): void {    
   }

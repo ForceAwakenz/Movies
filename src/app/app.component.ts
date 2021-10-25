@@ -8,5 +8,4 @@ import { MovieDataService } from './movie-data.service';
   providers: [MovieDataService]
 })
 export class AppComponent {
-  title = 'Movies';
 }
