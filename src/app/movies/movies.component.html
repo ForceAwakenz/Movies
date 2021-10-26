@@ -2,7 +2,7 @@
 <main *ngIf="dataBase; else: loading" >
     <app-movie-item 
     *ngFor="let movie of dataBase" 
-    [posterUrl]="movie.poster_path">
+    [posterPath]="movie.poster_path">
     </app-movie-item>
 </main>
 <ng-template #loading>
