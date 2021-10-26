@@ -5,14 +5,6 @@ main {
     justify-content: center;
 }
 
-app-movie-item {
-    margin: 0.9vw;
-    width: 17%;
-    box-shadow: 0px 0px 7px #555;
-    background-color: #191e6396;
-    /* transition: all 100ms; */
-}
-
 .category, p.service-message {
     text-align: center;
 }
