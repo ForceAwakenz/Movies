@@ -1,8 +1,8 @@
 <h4 class="category">{{category}}</h4>
 <main *ngIf="dataBase; else: loading" >
     <app-movie-item 
-    *ngFor="let movie of dataBase | slice:0:20 ; let indx = index;" 
-    [movieIndex]="indx">
+    *ngFor="let movie of dataBase" 
+    [posterUrl]="movie.poster_path">
     </app-movie-item>
 </main>
 <ng-template #loading>
