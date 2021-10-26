@@ -7,10 +7,12 @@ import { MovieDataService } from '../movie-data.service';
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent {
-dataBase : any;
+dataBase: any;
 @Input() category = '';
 
   constructor(private movieDataService: MovieDataService) { 
-    movieDataService.nowPlayingDBPromise.then(data => this.dataBase = data.results);
+    movieDataService.getNowPlayingMovies().subscribe(data => {this.dataBase = data});
   }
+
+
 }

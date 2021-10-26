@@ -7,6 +7,7 @@ import { MovieItemComponent } from './movie-item/movie-item.component';
 import { MovieDataService } from './movie-data.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HighlightDirective } from './shared/directives/highlight.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HighlightDirective } from './shared/directives/highlight.directive';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule
   ],
   providers: [MovieDataService],
   bootstrap: [AppComponent]
