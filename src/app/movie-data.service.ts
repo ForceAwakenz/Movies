@@ -1,8 +1,8 @@
-// import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
+@Injectable({
+  providedIn: 'root'
+})
 export class MovieDataService {
   baseUrl = 'http://api.themoviedb.org/';
   nowPlayingDBPromise: Promise<any>;
