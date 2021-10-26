@@ -8,6 +8,7 @@ import { MovieDataService } from './movie-data.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HighlightDirective } from './shared/directives/highlight.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { MoviesCategoryComponent } from './movies-category/movies-category.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     MoviesComponent,
     MovieItemComponent,
     NavbarComponent,
-    HighlightDirective
+    HighlightDirective,
+    MoviesCategoryComponent
   ],
   imports: [
     BrowserModule,

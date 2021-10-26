@@ -8,7 +8,7 @@ import { MovieDataService } from '../movie-data.service';
 })
 export class MoviesComponent {
 dataBase: any;
-@Input() category = '';
+// @Input() category = '';
 
   constructor(private movieDataService: MovieDataService) { 
     movieDataService.getNowPlayingMovies().subscribe(data => {this.dataBase = data});
