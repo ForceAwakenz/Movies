@@ -7,10 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class MovieItemComponent {
   @Input() posterPath = '';
-  posterUrl = '';
   posterImageBaseUrl = 'http://image.tmdb.org/t/p/w342';
 
-  getPosterUrl() {
+  get posterUrl() {
     return `${this.posterImageBaseUrl}${this.posterPath}`;
   }
 
