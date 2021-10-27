@@ -13,5 +13,8 @@ dataBase: any;
     movieDataService.getNowPlayingMovies().subscribe(data => {this.dataBase = data});
   }
 
+  trackByFn(index: any, movie: any) {
+    return movie.id
+  }
 
 }
