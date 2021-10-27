@@ -1,3 +1,10 @@
-export class Movie{
-    constructor(public title:string, public id:number, public release_date: number, public vote_average: number, public popularity: number, public overview:string){}
+export interface Movie{
+    title:string;
+    id:number;
+    release_date: number; 
+    vote_average: number; 
+    popularity: number;
+    overview:string;
+    logo:any;
+    bacground: any;
 }

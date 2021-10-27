@@ -12,10 +12,8 @@
     padding: 0px 0px 10px 15px;
     margin: 0px;
     font-weight: lighter;
-
-}
-h3,p{
     color: white;
+
 }
 .score-info{
     display: flex;
@@ -25,6 +23,8 @@ h3,p{
     margin-top: 0px;
     font-family: sans-serif;
     font-size: 2ch;
+    color: white;
+
 }
 .film-info{
     display: flex;
@@ -35,6 +35,8 @@ h3,p{
 font-size: 4ch;
 font-weight: 400;
 font-family: sans-serif;
+color: white;
+
 }
 .vl{
     border-left: 2px solid gray;
@@ -54,4 +56,10 @@ font-family: sans-serif;
     margin: 35px 0px 35px 0px;
     font-family: cursive;
     font-size: 2ch;
+    color: white;
+
+}
+.poster{
+    width: 200px;
+    height: 279px;
 }
