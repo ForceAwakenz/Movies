@@ -1,4 +1,3 @@
-<!-- <h4 class="category">{{category}}</h4> -->
 <main *ngIf="nowPlayingMoviesDB; else: loading" >
     <app-movie-item 
     *ngFor="let movie of nowPlayingMoviesDB; trackBy: trackByFn" 

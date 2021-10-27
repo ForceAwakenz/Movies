@@ -4,7 +4,6 @@ import { MovieDataService } from '../movie-data.service';
 
 import { MoviesComponent } from '../movies/movies.component';
 import { MovieItemComponent } from '../movies/movie-item/movie-item.component';
-import { NavbarComponent } from '../navbar/navbar.component';
 import { HighlightDirective } from '../shared/directives/highlight.directive';
 import { NowPlayingComponent } from '../now-playing/now-playing.component';
 
@@ -12,7 +11,7 @@ import { NowPlayingComponent } from '../now-playing/now-playing.component';
   declarations: [    
     MoviesComponent,
     MovieItemComponent,
-    NavbarComponent,
+
     HighlightDirective,
     NowPlayingComponent
   ],
@@ -22,7 +21,6 @@ import { NowPlayingComponent } from '../now-playing/now-playing.component';
   exports: [
     MoviesComponent,
     MovieItemComponent,
-    NavbarComponent,
     HighlightDirective,
     NowPlayingComponent
   ],
