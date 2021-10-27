@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { MovieDataService } from '../movie-data.service';
 
 @Component({
@@ -8,7 +8,6 @@ import { MovieDataService } from '../movie-data.service';
 })
 export class MoviesComponent {
 dataBase: any;
-// @Input() category = '';
 
   constructor(private movieDataService: MovieDataService) { 
     movieDataService.getNowPlayingMovies().subscribe(data => {this.dataBase = data});
