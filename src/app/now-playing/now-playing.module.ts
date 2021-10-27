@@ -3,12 +3,10 @@ import { CommonModule } from '@angular/common';
 import { MovieDataService } from '../movie-data.service';
 
 import { MoviesComponent } from '../movies/movies.component';
-import { MovieItemComponent } from '../movie-item/movie-item.component';
+import { MovieItemComponent } from '../movies/movie-item/movie-item.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { HighlightDirective } from '../shared/directives/highlight.directive';
 import { NowPlayingComponent } from '../now-playing/now-playing.component';
-
-
 
 @NgModule({
   declarations: [    
@@ -21,6 +19,13 @@ import { NowPlayingComponent } from '../now-playing/now-playing.component';
   imports: [
     CommonModule
   ],
+  exports: [
+    MoviesComponent,
+    MovieItemComponent,
+    NavbarComponent,
+    HighlightDirective,
+    NowPlayingComponent
+  ],
   providers: [MovieDataService]
 })
-export class MoviesModule { }
+export class NowPlayingModule { }
