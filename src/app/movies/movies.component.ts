@@ -12,11 +12,11 @@ dataBase: any;
   constructor(private movieDataService: MovieDataService) { 
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.movieDataService.getNowPlayingMovies().subscribe(data => {this.dataBase = data});
   }
 
-  trackByFn(index: any, movie: any) {
+  trackByFn(index: any, movie: any): number {
     return movie.id
   }
 

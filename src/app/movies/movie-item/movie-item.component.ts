@@ -9,7 +9,7 @@ export class MovieItemComponent {
   @Input() posterPath = '';
   private posterImageBaseUrl = 'http://image.tmdb.org/t/p/w342';
 
-  get posterUrl() {
+  get posterUrl(): string {
     return `${this.posterImageBaseUrl}${this.posterPath}`;
   }
 
