@@ -12,9 +12,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { 
-  constructor(private router: Router){
-  }
-  ngOnInit():void {
-    this.router.navigate(['movies',674025]);
-  }
 }

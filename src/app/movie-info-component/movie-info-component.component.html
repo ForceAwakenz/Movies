@@ -3,20 +3,21 @@
         <p>Movies</p>
     </div>
     <div class="film-box">
-        <img class="poster" src="{{logo}}"/>
+        <img class="poster" src="{{getMovieImageUrl
+        (movie?.poster_path)}}"/>
         <div class="film-info">
-            <h3>{{response?.title}} </h3>
+            <h3>{{movie?.title}} </h3>
                 <div class="score-info">
-                    <p>Score: {{response?.vote_average}}</p>
+                    <p>Score: {{movie?.vote_average}}</p>
                         <div class="vl">
-                            <p>popular: {{response?.popularity}}
+                            <p>popular: {{movie?.popularity}}
                         </div>
                         <div class="vl">
-                            <p>Date release: {{response?.release_date}}</p>
+                            <p>Date release: {{movie?.release_date}}</p>
                         </div>
                 </div>
                 <div class= "gl">
-                    <p>{{response?.overview}}</p>
+                    <p>{{movie?.overview}}</p>
                 </div>
         </div>
     </div>
