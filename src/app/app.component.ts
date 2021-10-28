@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MovieDataService } from './movie-data.service';
 
 @Component({
   selector: 'app-root',
