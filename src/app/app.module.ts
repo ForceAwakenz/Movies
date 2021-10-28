@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
-import { NowPlayingModule } from './now-playing/now-playing.module';
+import { MoviesListViewModule } from './now-playing/now-playing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
@@ -15,7 +15,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NowPlayingModule
+    MoviesListViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

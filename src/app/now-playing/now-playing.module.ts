@@ -5,7 +5,7 @@ import { MovieDataService } from '../shared/services/movie-data.service';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieItemComponent } from './movie-item/movie-item.component';
 import { HighlightDirective } from '../shared/directives/highlight.directive';
-import { NowPlayingComponent } from '../now-playing/now-playing.component';
+import { MoviesListViewComponent } from './movies-list-view.component';
 
 @NgModule({
   declarations: [    
@@ -13,7 +13,7 @@ import { NowPlayingComponent } from '../now-playing/now-playing.component';
     MovieItemComponent,
 
     HighlightDirective,
-    NowPlayingComponent
+    MoviesListViewComponent
   ],
   imports: [
     CommonModule
@@ -22,8 +22,8 @@ import { NowPlayingComponent } from '../now-playing/now-playing.component';
     MoviesComponent,
     MovieItemComponent,
     HighlightDirective,
-    NowPlayingComponent
+    MoviesListViewComponent
   ],
   providers: [MovieDataService]
 })
-export class NowPlayingModule { }
+export class MoviesListViewModule { }

@@ -1,6 +1,6 @@
-<main *ngIf="nowPlayingMoviesDB; else: loading" >
+<main *ngIf="moviesList; else: loading" >
     <app-movie-item 
-      *ngFor="let movie of nowPlayingMoviesDB; trackBy: trackByFn" 
+      *ngFor="let movie of moviesList; trackBy: trackByFn" 
       [posterPath]="movie.poster_path">
     </app-movie-item>
 </main>
