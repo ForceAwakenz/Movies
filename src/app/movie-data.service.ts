@@ -4,9 +4,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 interface IMoviesListResponse {
-  dates?: string,
-  page?: number,
-  results?: Results[] // temporarily, until I get IMovie interface from Alena
+  dates: string,
+  page: number,
+  results: Results[], // temporarily, until I get IMovie interface from Alena
+  total_pages: number,
+  total_results: number
 };
 
 interface Results {
