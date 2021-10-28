@@ -3,6 +3,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+interface IMoviesListResponse {
+  dates?: string,
+  page?: number,
+  results?: Results[] // temporarily, until I get IMovie interface from Alena
+};
+
+interface Results {
+  id?: number
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,9 +23,11 @@ export class MovieDataService {
   constructor(private http: HttpClient) { 
   }
 
-  getNowPlayingMovies(): Observable<any> {
-    return this.http.get(`${this.movieApiBaseUrl}now_playing?api_key=${this.movieApiKey}`)
-    .pipe( map((data: any) => data.results) );
+  getNowPlayingMovies(): Observable<Results[]> {
+    return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}now_playing?api_key=${this.movieApiKey}`)
+      .pipe( 
+        map((data: IMoviesListResponse) => data.results) 
+      );
   }
 
 }

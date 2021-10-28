@@ -7,13 +7,13 @@ import { MovieDataService } from '../movie-data.service';
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent implements OnInit {
-nowPlayingMoviesDB: any;
+  nowPlayingMoviesDB: any;
 
   constructor(private movieDataService: MovieDataService) { 
   }
 
   ngOnInit(): void {
-    this.movieDataService.getNowPlayingMovies().subscribe(data => {this.nowPlayingMoviesDB = data});
+    this.movieDataService.getNowPlayingMovies().subscribe(data => this.nowPlayingMoviesDB = data);
   }
 
   trackByFn(index: any, movie: any): number {

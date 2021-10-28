@@ -8,6 +8,6 @@
 
 .highlighter {
     transform: scale(1.1);
-    box-shadow: 0px 0px 7px #191e63;
+    box-shadow: 6px 6px 2px 1px rgba(0, 0, 255, 0.4);
     transition: all 100ms;
 }
