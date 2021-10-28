@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { MoviesListViewModule } from './movies-list-view/movies-list-view.module';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MovieInfoComponentComponent } from './movie-info-component/movie-info-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,    
+    MovieInfoComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -19,5 +21,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   ],
   providers: [],
   bootstrap: [AppComponent]
+
 })
-export class AppModule { }
+export class AppModule { 
+}
