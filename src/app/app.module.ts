@@ -4,8 +4,6 @@ import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { MovieInfoComponentComponent } from './movie-info-component/movie-info-component.component';
 import { HttpClientModule }   from '@angular/common/http';
-import {AppRoutingModule} from './app.routing.module';
-
 
 @NgModule({
   declarations: [
