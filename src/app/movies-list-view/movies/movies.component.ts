@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { take, takeUntil } from 'rxjs/operators';
+import { IMovie } from 'src/app/shared/interfaces/movie.interface';
 import { MovieDataService } from '../../shared/services/movie-data.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { MovieDataService } from '../../shared/services/movie-data.service';
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent implements OnInit {
-  moviesList: any;
+  moviesList: IMovie[];
 
   constructor(private movieDataService: MovieDataService) { 
   }
@@ -17,11 +17,11 @@ export class MoviesComponent implements OnInit {
     this.loadMovies();
   }
 
-  trackByFn(index: any, movie: any): number {
+  trackByFn(index: number, movie: IMovie): number {
     return movie.id
   }
   
   private loadMovies(): void {
-    this.movieDataService.getNowPlayingMovies().subscribe(data => this.moviesList = data);
+    this.movieDataService.getNowPlayingMovies().subscribe((data: IMovie[]) => this.moviesList = data);
   }
 }

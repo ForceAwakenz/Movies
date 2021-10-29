@@ -1,19 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IMovie } from 'src/app/shared/interfaces/movie.interface';
 import { map } from 'rxjs/operators';
+import { IMoviesListResponse } from '../interfaces/movies-list-response';
 
-interface IMoviesListResponse {
-  dates: string,
-  page: number,
-  results: Results[], // temporarily, until I get IMovie interface from Alena
-  total_pages: number,
-  total_results: number
-};
 
-interface Results {
-  id?: number
-}
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +17,15 @@ export class MovieDataService {
   constructor(private http: HttpClient) { 
   }
 
-  getNowPlayingMovies(): Observable<Results[]> {
+  getNowPlayingMovies(): Observable<IMovie[]> {
     return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}now_playing?api_key=${this.movieApiKey}`)
       .pipe( 
         map((data: IMoviesListResponse) => data.results) 
       );
+  }
+
+  getMovieById(id: string):Observable<IMovie> { 
+    return this.http.get<IMovie>(`${this.movieApiBaseUrl}674025?api_key=${this.movieApiKey}`);
   }
 
 }

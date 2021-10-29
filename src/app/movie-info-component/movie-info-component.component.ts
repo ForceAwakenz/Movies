@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MovieService } from './http.service';
-import { IMovie } from './movie';
+import { MovieDataService } from '../shared/services/movie-data.service';
+import { IMovie } from '../shared/interfaces/movie.interface';
 import {switchMap, take, map, filter} from 'rxjs/operators';
 
 const BASE_IMAGE_URL = 'http://image.tmdb.org/t/p/w342';
@@ -10,13 +10,12 @@ const BASE_IMAGE_URL = 'http://image.tmdb.org/t/p/w342';
   selector: 'app-movie-info',
   templateUrl: 'movie-info-component.component.html',
   styleUrls: ['movie-info-component.component.css'],
-  providers: [MovieService]
 })
 
 export class MovieInfoComponentComponent implements OnInit {
   movie!: IMovie;
     
-  constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute){
+  constructor(private movieService: MovieDataService, private activatedRoute: ActivatedRoute){
   }
 
   getMovieInfo(): void{
