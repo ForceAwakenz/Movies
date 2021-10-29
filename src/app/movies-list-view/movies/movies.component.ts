@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { take, takeUntil } from 'rxjs/operators';
 import { MovieDataService } from '../../shared/services/movie-data.service';
 
 @Component({
@@ -13,11 +14,14 @@ export class MoviesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movieDataService.getNowPlayingMovies().subscribe(data => this.moviesList = data);
+    this.loadMovies();
   }
 
   trackByFn(index: any, movie: any): number {
     return movie.id
   }
-
+  
+  private loadMovies(): void {
+    this.movieDataService.getNowPlayingMovies().subscribe(data => this.moviesList = data);
+  }
 }
