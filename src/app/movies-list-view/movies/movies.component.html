@@ -1,0 +1,11 @@
+<main *ngIf="moviesList; else: loading" >
+    <app-movie-item 
+      *ngFor="let movie of moviesList; trackBy: trackByFn" 
+      [posterPath]="movie.poster_path">
+    </app-movie-item>
+</main>
+<ng-template #loading>
+    <p class="service-message">
+        Loading server data ...
+    </p>
+</ng-template>

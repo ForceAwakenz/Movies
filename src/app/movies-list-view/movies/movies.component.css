@@ -1,0 +1,14 @@
+main {
+    margin: 0 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.category, p.service-message {
+    text-align: center;
+}
+
+.category {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,11 @@
+:host {
+    margin: 0.9vw;
+    width: 17%;
+    box-shadow: 0px 0px 7px #555;
+    background-color: #191e6396;
+}
+
+.movie-item {
+    width: 100%;
+    height: 100%; 
+}
