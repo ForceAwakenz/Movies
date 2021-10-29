@@ -1,8 +1,20 @@
 <table>
     <tr>
         <ng-container *ngIf="existsIn(currentPage - 1 , pagesTotal)">
-            <td>First</td>
-            <td>Previous</td>
+        <td>
+            <a 
+            [routerLink]="['/movies']"
+            [queryParams]="{ page: 1}">
+                First
+            </a>
+        </td>
+            <td>
+                <a 
+                [routerLink]="['/movies']"
+                [queryParams]="{ page: currentPage - 1}">
+                    Prev
+                </a>
+            </td>
         </ng-container>
         <td *ngIf="existsIn(currentPage - 2 , pagesTotal)">...</td>
         <td>
@@ -28,8 +40,20 @@
         </td>
         <td *ngIf="existsIn(currentPage + 2, pagesTotal)">...</td>
         <ng-container *ngIf="existsIn(currentPage + 1, pagesTotal)">
-            <td>Next</td>
-            <td>Last</td>
+            <td>
+                <a 
+                [routerLink]="['/movies']"
+                [queryParams]="{ page: currentPage + 1}">
+                    Next
+                </a>
+            </td>
+            <td>
+                <a 
+                [routerLink]="['/movies']"
+                [queryParams]="{ page: pagesTotal}">
+                    Last
+                </a>
+            </td>
         </ng-container>
     </tr>
 </table>

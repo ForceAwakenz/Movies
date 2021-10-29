@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { MovieDataService } from 'src/app/shared/services/movie-data.service';
+// import { MovieDataService } from 'src/app/shared/services/movie-data.service';
 
 type INumberTrio = [number, number, number];
 
@@ -14,8 +14,7 @@ export class PaginatorComponent implements OnInit{
   currentPage: number = 1;
   pageNumberTrio: INumberTrio = [1, 2, 3];
 
-  constructor(private movieDataService: MovieDataService,
-    private router: Router,
+  constructor(private router: Router,
     private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -24,10 +23,6 @@ export class PaginatorComponent implements OnInit{
       this.renderPaginator(this.currentPage, this.pagesTotal);
     });
   }
-
-  // navigateTo(page) {
-  //   this.router.navigate()
-  // }
 
   renderPaginator(toPage: number, pagesTotal: number): void  {
     let trioShifter = 0;
