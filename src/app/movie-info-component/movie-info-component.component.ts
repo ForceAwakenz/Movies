@@ -10,7 +10,6 @@ const BASE_IMAGE_URL = 'http://image.tmdb.org/t/p/w342';
   selector: 'app-movie-info',
   templateUrl: 'movie-info-component.component.html',
   styleUrls: ['movie-info-component.component.css'],
-  providers: [MovieDataService]
 })
 
 export class MovieInfoComponentComponent implements OnInit {
