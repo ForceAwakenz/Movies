@@ -1,16 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IMovie } from 'src/app/shared/interfaces/movie';
+import { IMovie } from 'src/app/shared/interfaces/movie.interface';
 import { map } from 'rxjs/operators';
+import { IMoviesListResponse } from '../interfaces/movies-list-response';
 
-interface IMoviesListResponse {
-  dates: string,
-  page: number,
-  results: IMovie[],
-  total_pages: number,
-  total_results: number
-};
+
 
 @Injectable({
   providedIn: 'root'

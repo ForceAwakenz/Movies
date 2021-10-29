@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieDataService } from '../shared/services/movie-data.service';
-import { IMovie } from '../shared/interfaces/movie';
+import { IMovie } from '../shared/interfaces/movie.interface';
 import {switchMap, take, map, filter} from 'rxjs/operators';
 
 const BASE_IMAGE_URL = 'http://image.tmdb.org/t/p/w342';
