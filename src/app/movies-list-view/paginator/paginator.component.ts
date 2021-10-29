@@ -20,7 +20,7 @@ export class PaginatorComponent implements OnInit{
 
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
-      this.currentPage = params.currentPage || this.currentPage;
+      this.currentPage = +params.page || this.currentPage;
       this.renderPaginator(this.currentPage, this.pagesTotal);
     });
   }
@@ -42,7 +42,7 @@ export class PaginatorComponent implements OnInit{
     console.log(this.pageNumberTrio);
   }
 
-  public existsIn(targetNumber: number, inRange: number): boolean {
+  existsIn(targetNumber: number, inRange: number): boolean {
     return ( targetNumber >= 1 && targetNumber <= inRange) ? true : false;
   }
 

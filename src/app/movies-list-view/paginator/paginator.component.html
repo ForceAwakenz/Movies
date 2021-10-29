@@ -5,9 +5,27 @@
             <td>Previous</td>
         </ng-container>
         <td *ngIf="existsIn(currentPage - 2 , pagesTotal)">...</td>
-        <td>{{pageNumberTrio[0]}}</td>
-        <td>{{pageNumberTrio[1]}}</td>
-        <td>{{pageNumberTrio[2]}}</td>
+        <td>
+            <a 
+            [routerLink]="['/movies']"
+            [queryParams]="{ page: pageNumberTrio[0]}">
+                {{pageNumberTrio[0]}}
+            </a>
+        </td>
+        <td>
+            <a 
+            [routerLink]="['/movies']"
+            [queryParams]="{ page: pageNumberTrio[1]}">
+                {{pageNumberTrio[1]}}
+            </a>
+        </td>
+        <td>
+            <a 
+            [routerLink]="['/movies']"
+            [queryParams]="{ page: pageNumberTrio[2]}">
+                {{pageNumberTrio[2]}}
+            </a>
+        </td>
         <td *ngIf="existsIn(currentPage + 2, pagesTotal)">...</td>
         <ng-container *ngIf="existsIn(currentPage + 1, pagesTotal)">
             <td>Next</td>

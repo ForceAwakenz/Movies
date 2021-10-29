@@ -8,6 +8,7 @@ import { HighlightDirective } from '../shared/directives/highlight.directive';
 import { MoviesListViewComponent } from './movies-list-view.component';
 import { MovieCategoryHeaderComponent } from './movie-category-header/movie-category-header.component';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [    
@@ -19,7 +20,8 @@ import { PaginatorComponent } from './paginator/paginator.component';
     PaginatorComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     MoviesComponent,
