@@ -1,1 +1,18 @@
-<p>paginator works!</p>
+<table>
+    <tr>
+        <ng-container *ngIf="existsIn(currentPage - 1 , pagesTotal)">
+            <td>First</td>
+            <td>Previous</td>
+        </ng-container>
+        <td *ngIf="existsIn(currentPage - 2 , pagesTotal)">...</td>
+        <td>{{pageNumberTrio[0]}}</td>
+        <td>{{pageNumberTrio[1]}}</td>
+        <td>{{pageNumberTrio[2]}}</td>
+        <td *ngIf="existsIn(currentPage + 2, pagesTotal)">...</td>
+        <ng-container *ngIf="existsIn(currentPage + 1, pagesTotal)">
+            <td>Next</td>
+            <td>Last</td>
+        </ng-container>
+    </tr>
+</table>
+
