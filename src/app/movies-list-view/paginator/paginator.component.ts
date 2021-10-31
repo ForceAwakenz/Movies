@@ -20,11 +20,11 @@ export class PaginatorComponent implements OnInit{
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
       this.currentPage = +params.page || this.currentPage;
-      this.renderPaginator(this.currentPage, this.pagesTotal);
+      this.pageNumberTrio = this.constructNumberTrio(this.currentPage, this.pagesTotal);
     });
   }
 
-  renderPaginator(toPage: number, pagesTotal: number): void  {
+  constructNumberTrio(toPage: number, pagesTotal: number): INumberTrio  {
     let trioShifter = 0;
     if (!this.existsIn(toPage - 1, pagesTotal)) {
       trioShifter++;
@@ -32,13 +32,12 @@ export class PaginatorComponent implements OnInit{
     if (!this.existsIn(toPage + 1, pagesTotal)) {
       trioShifter--;
     }
-    let currentPosition = toPage + trioShifter;
-    this.pageNumberTrio = [ currentPosition - 1 , currentPosition, currentPosition + 1];
-    console.log(this.pageNumberTrio);
+    toPage += trioShifter;
+    return [ toPage - 1 , toPage, toPage + 1];
   }
 
   existsIn(targetNumber: number, inRange: number): boolean {
-    return ( targetNumber >= 1 && targetNumber <= inRange) ? true : false;
+    return  targetNumber >= 1 && targetNumber <= inRange;
   }
 
 }
