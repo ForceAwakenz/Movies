@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { IMovie } from 'src/app/shared/interfaces/movie.interface';
+import { IMoviesListResponse } from 'src/app/shared/interfaces/movies-list-response';
 import { MovieDataService } from '../../shared/services/movie-data.service';
 
 @Component({
@@ -17,7 +19,7 @@ export class MoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
-      this.loadMovies(params.page);
+      this.loadMovies(+params.page);
     })
   }
 
@@ -25,7 +27,12 @@ export class MoviesComponent implements OnInit {
     return movie.id
   }
   
-  private loadMovies(pageNumber: string): void {
-    this.movieDataService.getNowPlayingMovies(pageNumber).subscribe((data: IMovie[]) => this.moviesList = data);
+  private loadMovies(pageNumber: number): void {
+    this.movieDataService.getMoviesListResponse(pageNumber)
+      .pipe( map((data: IMoviesListResponse) => data.results))
+      .subscribe((data: IMovie[]) => {
+        this.moviesList = data;
+      });
   }
+
 }

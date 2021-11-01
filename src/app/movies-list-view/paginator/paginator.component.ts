@@ -9,7 +9,7 @@ type INumberTrio = [number, number, number];
   styleUrls: ['./paginator.component.css']
 })
 export class PaginatorComponent implements OnInit{
-  @Input() pagesTotal: number = 10;
+  @Input() pagesTotal: number;
   @Input() currentPage: number = 1;
 
   pageNumberTrio: INumberTrio = [1, 2, 3];
@@ -19,19 +19,11 @@ export class PaginatorComponent implements OnInit{
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
-      this.currentPage = +params.page || this.currentPage;
-      this.pageNumberTrio = this.constructNumberTrio(this.currentPage, this.pagesTotal);
+      this.currentPage = +params.page;
+      if (this.pagesTotal) {
+        this.pageNumberTrio = this.constructNumberTrio(this.currentPage, this.pagesTotal);
+      }
     });
-  }
-
-  constructNumberTrio(toPage: number, pagesTotal: number): INumberTrio  {
-    if (!this.existsIn(toPage - 1, pagesTotal)) {
-      toPage++;
-    }
-    if (!this.existsIn(toPage + 1, pagesTotal)) {
-      toPage--;
-    }
-    return [ toPage - 1 , toPage, toPage + 1];
   }
 
   existsIn(targetNumber: number, inRange: number): boolean {
@@ -41,6 +33,16 @@ export class PaginatorComponent implements OnInit{
   changePage(moveToPage: number): void {
     this.currentPage = moveToPage;
     this.router.navigate(['/movies'], {queryParams: {'page': moveToPage}});
+  }
+
+  private constructNumberTrio(toPage: number, pagesTotal: number): INumberTrio {
+    if (!this.existsIn(toPage - 1, pagesTotal)) {
+      toPage++;
+    }
+    if (!this.existsIn(toPage + 1, pagesTotal)) {
+      toPage--;
+    }
+    return [ toPage - 1 , toPage, toPage + 1];
   }
 
 }
