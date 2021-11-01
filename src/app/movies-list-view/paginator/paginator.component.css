@@ -1,4 +1,21 @@
-table, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+a {
+    text-decoration: none;
+    color: #505050;
 }
+
+a:visited {
+    color: #505050;;
+}
+
+table, td {
+    border: 2px solid #aaaaaa;
+    border-collapse: collapse;
+    padding: 4px 6px;
+}
+
+#paginator {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+

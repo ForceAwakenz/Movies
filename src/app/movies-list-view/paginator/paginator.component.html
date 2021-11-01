@@ -1,60 +1,65 @@
-<table>
-    <tr>
-        <ng-container *ngIf="existsIn(currentPage - 1 , pagesTotal)">
-        <td>
-            <a 
-            [routerLink]="['/movies']"
-            [queryParams]="{ page: 1}">
-                First
-            </a>
-        </td>
+<div id="paginator">
+    <table>
+        <tr>
+            <ng-container *ngIf="existsIn(currentPage - 1 , pagesTotal)">
             <td>
                 <a 
                 [routerLink]="['/movies']"
-                [queryParams]="{ page: currentPage - 1}">
-                    Prev
+                [queryParams]="{ page: 1}">
+                    First
                 </a>
             </td>
-        </ng-container>
-        <td *ngIf="existsIn(currentPage - 2 , pagesTotal)">...</td>
-        <td>
-            <a 
-            [routerLink]="['/movies']"
-            [queryParams]="{ page: pageNumberTrio[0]}">
-                {{pageNumberTrio[0]}}
-            </a>
-        </td>
-        <td>
-            <a 
-            [routerLink]="['/movies']"
-            [queryParams]="{ page: pageNumberTrio[1]}">
-                {{pageNumberTrio[1]}}
-            </a>
-        </td>
-        <td>
-            <a 
-            [routerLink]="['/movies']"
-            [queryParams]="{ page: pageNumberTrio[2]}">
-                {{pageNumberTrio[2]}}
-            </a>
-        </td>
-        <td *ngIf="existsIn(currentPage + 2, pagesTotal)">...</td>
-        <ng-container *ngIf="existsIn(currentPage + 1, pagesTotal)">
+                <td>
+                    <a 
+                    [routerLink]="['/movies']"
+                    [queryParams]="{ page: currentPage - 1}">
+                        Prev
+                    </a>
+                </td>
+            </ng-container>
+            <td *ngIf="existsIn(currentPage - 2 , pagesTotal)">...</td>
             <td>
                 <a 
                 [routerLink]="['/movies']"
-                [queryParams]="{ page: currentPage + 1}">
-                    Next
+                [queryParams]="{ page: pageNumberTrio[0]}"
+                [ngStyle]="{color: currentPage === pageNumberTrio[0] ? '#009494' : '' }">
+                    {{pageNumberTrio[0]}}
                 </a>
             </td>
             <td>
                 <a 
                 [routerLink]="['/movies']"
-                [queryParams]="{ page: pagesTotal}">
-                    Last
+                [queryParams]="{ page: pageNumberTrio[1]}"
+                [ngStyle]="{color: currentPage === pageNumberTrio[1] ? '#009494' : '' }">
+                    {{pageNumberTrio[1]}}
                 </a>
             </td>
-        </ng-container>
-    </tr>
-</table>
+            <td>
+                <a 
+                [routerLink]="['/movies']"
+                [queryParams]="{ page: pageNumberTrio[2]}"
+                [ngStyle]="{color: currentPage === pageNumberTrio[2] ? '#009494' : '' }">
+                    {{pageNumberTrio[2]}}
+                </a>
+            </td>
+            <td *ngIf="existsIn(currentPage + 2, pagesTotal)">...</td>
+            <ng-container *ngIf="existsIn(currentPage + 1, pagesTotal)">
+                <td>
+                    <a 
+                    [routerLink]="['/movies']"
+                    [queryParams]="{ page: currentPage + 1}">
+                        Next
+                    </a>
+                </td>
+                <td>
+                    <a 
+                    [routerLink]="['/movies']"
+                    [queryParams]="{ page: pagesTotal}">
+                        Last
+                    </a>
+                </td>
+            </ng-container>
+        </tr>
+    </table>
+</div>
 
