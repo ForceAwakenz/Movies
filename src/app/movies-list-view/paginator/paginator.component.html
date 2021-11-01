@@ -18,30 +18,16 @@
                 </td>
             </ng-container>
             <td *ngIf="existsIn(currentPage - 2 , pagesTotal)">...</td>
-            <td>
-                <a 
+
+            <td *ngFor="let pageNumber of pageNumberTrio; let indx = index;">
+                <a  
                 [routerLink]="['/movies']"
-                [queryParams]="{ page: pageNumberTrio[0]}"
-                [ngStyle]="{color: currentPage === pageNumberTrio[0] ? '#009494' : '' }">
-                    {{pageNumberTrio[0]}}
+                [queryParams]="{ page: pageNumberTrio[indx]}"
+                [ngStyle]="{color: currentPage === pageNumberTrio[indx] ? '#009494' : '' }">
+                    {{pageNumberTrio[indx]}}
                 </a>
             </td>
-            <td>
-                <a 
-                [routerLink]="['/movies']"
-                [queryParams]="{ page: pageNumberTrio[1]}"
-                [ngStyle]="{color: currentPage === pageNumberTrio[1] ? '#009494' : '' }">
-                    {{pageNumberTrio[1]}}
-                </a>
-            </td>
-            <td>
-                <a 
-                [routerLink]="['/movies']"
-                [queryParams]="{ page: pageNumberTrio[2]}"
-                [ngStyle]="{color: currentPage === pageNumberTrio[2] ? '#009494' : '' }">
-                    {{pageNumberTrio[2]}}
-                </a>
-            </td>
+
             <td *ngIf="existsIn(currentPage + 2, pagesTotal)">...</td>
             <ng-container *ngIf="existsIn(currentPage + 1, pagesTotal)">
                 <td>
