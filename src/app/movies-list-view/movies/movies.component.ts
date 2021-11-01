@@ -12,11 +12,11 @@ export class MoviesComponent implements OnInit {
   moviesList: IMovie[];
 
   constructor(private movieDataService: MovieDataService,
-    private route: ActivatedRoute) { 
+    private activatedRoute: ActivatedRoute) { 
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params: Params) => {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.loadMovies(params.page);
     })
   }

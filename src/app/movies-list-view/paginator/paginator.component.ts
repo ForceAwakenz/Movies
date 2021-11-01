@@ -15,11 +15,11 @@ export class PaginatorComponent implements OnInit{
   pageNumberTrio: INumberTrio = [1, 2, 3];
 
   constructor(private router: Router,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private movieDataService: MovieDataService) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe((params: Params) => {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.currentPage = +params.page || this.currentPage;
       this.pageNumberTrio = this.constructNumberTrio(this.currentPage, this.pagesTotal);
     });
