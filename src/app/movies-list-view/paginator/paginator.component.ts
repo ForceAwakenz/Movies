@@ -10,7 +10,7 @@ type INumberTrio = [number, number, number];
 })
 export class PaginatorComponent implements OnInit{
   @Input() pagesTotal: number;
-  @Input() currentPage: number = 1;
+  @Input() currentPage: number;
 
   pageNumberTrio: INumberTrio = [1, 2, 3];
 
@@ -18,6 +18,9 @@ export class PaginatorComponent implements OnInit{
     private router: Router) {}
 
   ngOnInit() {
+    if (!this.currentPage) {
+      this.changePage(1);
+    }
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.currentPage = +params.page;
       if (this.pagesTotal) {
