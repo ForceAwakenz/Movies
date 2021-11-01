@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { IMovie } from 'src/app/shared/interfaces/movie.interface';
 import { MovieDataService } from '../../shared/services/movie-data.service';
 
@@ -10,18 +11,21 @@ import { MovieDataService } from '../../shared/services/movie-data.service';
 export class MoviesComponent implements OnInit {
   moviesList: IMovie[];
 
-  constructor(private movieDataService: MovieDataService) { 
+  constructor(private movieDataService: MovieDataService,
+    private route: ActivatedRoute) { 
   }
 
   ngOnInit(): void {
-    this.loadMovies();
+    this.route.queryParams.subscribe((params: Params) => {
+      this.loadMovies(params.page);
+    })
   }
 
   trackByFn(index: number, movie: IMovie): number {
     return movie.id
   }
   
-  private loadMovies(): void {
-    this.movieDataService.getNowPlayingMovies().subscribe((data: IMovie[]) => this.moviesList = data);
+  private loadMovies(pageNumber: string): void {
+    this.movieDataService.getNowPlayingMovies(pageNumber).subscribe((data: IMovie[]) => this.moviesList = data);
   }
 }
