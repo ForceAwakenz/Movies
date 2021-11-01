@@ -15,24 +15,13 @@ export class MovieDataService {
 
   constructor(private http: HttpClient) {}
 
-  getNowPlayingMovies(pageNumber: string): Observable<IMovie[]> {
+  getMoviesListResponse(pageNumber: number): Observable<IMoviesListResponse> {
     return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}now_playing`, 
-      {params: this.coreHttpParams.set('page', pageNumber)})
-      .pipe( 
-        map((data: IMoviesListResponse) => data.results) 
-      );
+      {params: this.coreHttpParams.set('page', pageNumber)});
   }
 
   getMovieById(id: string):Observable<IMovie> { 
     return this.http.get<IMovie>(`${this.movieApiBaseUrl}674025`, {params: this.coreHttpParams});
-  }
-
-  getPagesTotal(): Observable<number> {
-    return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}now_playing`, 
-      {params: this.coreHttpParams})
-      .pipe( 
-        map((data: IMoviesListResponse) => data.total_pages) 
-      );
   }
 
 }
