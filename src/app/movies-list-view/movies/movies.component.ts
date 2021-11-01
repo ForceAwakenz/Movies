@@ -19,7 +19,7 @@ export class MoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
-      this.loadMovies(+params.page);
+      this.loadMovies(+params.page || 1);
     })
   }
 

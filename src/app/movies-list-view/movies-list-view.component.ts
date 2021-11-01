@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { IMoviesListResponse } from '../shared/interfaces/movies-list-response';
 import { MovieDataService } from '../shared/services/movie-data.service';
 
@@ -17,9 +17,7 @@ export class MoviesListViewComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
-      this.currentPage = +params.page;
-    });
+    // console.log(this.currentPage)// !!! undefined
     this.movieDataService.getMoviesListResponse(this.currentPage).subscribe((data: IMoviesListResponse) => {
       this.moviesListResponse = data;
       this.totalPages = data.total_pages;
