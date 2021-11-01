@@ -11,36 +11,28 @@ import { IMoviesListResponse } from '../interfaces/movies-list-response';
 export class MovieDataService {
   private movieApiBaseUrl = 'http://api.themoviedb.org/3/movie/';
   private movieApiKey = 'ebea8cfca72fdff8d2624ad7bbf78e4c';
+  private coreHttpParams = new HttpParams().set('api_key', this.movieApiKey);
 
   constructor(private http: HttpClient) {}
 
   getNowPlayingMovies(pageNumber: string): Observable<IMovie[]> {
-    let searchParams = new HttpParams()
-      .set('api_key', this.movieApiKey)
-      .set('page', pageNumber);
-
-    return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}now_playing`, {params: searchParams})
+    return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}now_playing`, 
+      {params: this.coreHttpParams.set('page', pageNumber)})
       .pipe( 
         map((data: IMoviesListResponse) => data.results) 
       );
-
   }
 
   getMovieById(id: string):Observable<IMovie> { 
-    let searchParams = new HttpParams()
-    .set('api_key', this.movieApiKey);
-
-    return this.http.get<IMovie>(`${this.movieApiBaseUrl}674025`, {params: searchParams});
+    return this.http.get<IMovie>(`${this.movieApiBaseUrl}674025`, {params: this.coreHttpParams});
   }
 
   getPagesTotal(): Observable<number> {
-    let searchParams = new HttpParams()
-    .set('api_key', this.movieApiKey);
-
-    return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}now_playing`, {params: searchParams})
-    .pipe( 
-      map((data: IMoviesListResponse) => data.total_pages) 
-    );
+    return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}now_playing`, 
+      {params: this.coreHttpParams})
+      .pipe( 
+        map((data: IMoviesListResponse) => data.total_pages) 
+      );
   }
 
 }
