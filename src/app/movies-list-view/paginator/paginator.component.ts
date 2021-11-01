@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { MovieDataService } from 'src/app/shared/services/movie-data.service';
 
 type INumberTrio = [number, number, number];
 
@@ -10,20 +9,19 @@ type INumberTrio = [number, number, number];
   styleUrls: ['./paginator.component.css']
 })
 export class PaginatorComponent implements OnInit{
-  pagesTotal: number;
-  currentPage: number = 1;
+  @Input() pagesTotal: number = 10;
+  @Input() currentPage: number = 1;
+
   pageNumberTrio: INumberTrio = [1, 2, 3];
 
-  constructor(private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private movieDataService: MovieDataService) {}
+  constructor(private activatedRoute: ActivatedRoute,
+    private router: Router) {}
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.currentPage = +params.page || this.currentPage;
       this.pageNumberTrio = this.constructNumberTrio(this.currentPage, this.pagesTotal);
     });
-    this.movieDataService.getPagesTotal().subscribe((pagesTotal: number) => this.pagesTotal = pagesTotal);
   }
 
   constructNumberTrio(toPage: number, pagesTotal: number): INumberTrio  {
@@ -38,6 +36,11 @@ export class PaginatorComponent implements OnInit{
 
   existsIn(targetNumber: number, inRange: number): boolean {
     return  targetNumber >= 1 && targetNumber <= inRange;
+  }
+
+  changePage(moveToPage: number): void {
+    this.currentPage = moveToPage;
+    this.router.navigate(['/movies'], {queryParams: {'page': moveToPage}});
   }
 
 }

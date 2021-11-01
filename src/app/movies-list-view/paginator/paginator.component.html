@@ -3,16 +3,12 @@
         <tr>
             <ng-container *ngIf="existsIn(currentPage - 1 , pagesTotal)">
             <td>
-                <a 
-                [routerLink]="['/movies']"
-                [queryParams]="{ page: 1}">
+                <a (click)="changePage(1)">
                     First
                 </a>
             </td>
                 <td>
-                    <a 
-                    [routerLink]="['/movies']"
-                    [queryParams]="{ page: currentPage - 1}">
+                    <a (click)="changePage(currentPage - 1)">
                         Prev
                     </a>
                 </td>
@@ -21,8 +17,7 @@
 
             <td *ngFor="let pageNumber of pageNumberTrio; let indx = index;">
                 <a  
-                [routerLink]="['/movies']"
-                [queryParams]="{ page: pageNumberTrio[indx]}"
+                (click)="changePage(pageNumberTrio[indx])"
                 [ngStyle]="{color: currentPage === pageNumberTrio[indx] ? '#009494' : '' }">
                     {{pageNumberTrio[indx]}}
                 </a>
@@ -31,16 +26,12 @@
             <td *ngIf="existsIn(currentPage + 2, pagesTotal)">...</td>
             <ng-container *ngIf="existsIn(currentPage + 1, pagesTotal)">
                 <td>
-                    <a 
-                    [routerLink]="['/movies']"
-                    [queryParams]="{ page: currentPage + 1}">
+                    <a (click)="changePage(currentPage + 1)">
                         Next
                     </a>
                 </td>
                 <td>
-                    <a 
-                    [routerLink]="['/movies']"
-                    [queryParams]="{ page: pagesTotal}">
+                    <a (click)="changePage(pagesTotal)">
                         Last
                     </a>
                 </td>
