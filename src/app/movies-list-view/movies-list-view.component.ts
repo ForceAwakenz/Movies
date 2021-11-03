@@ -10,7 +10,7 @@ import { MovieDataService } from '../shared/services/movie-data.service';
 })
 export class MoviesListViewComponent implements OnInit {
   moviesListResponse: IMoviesListResponse;
-  currentPage: number = 1;
+  currentPage: number;
   totalPages: number;
 
   constructor(private movieDataService: MovieDataService,
