@@ -15,7 +15,7 @@ export class MovieDataService {
 
   constructor(private http: HttpClient) {}
 
-  getMoviesListResponse(pageNumber: number): Observable<IMoviesListResponse> {
+  getMoviesListResponse$(pageNumber: number): Observable<IMoviesListResponse> {
     return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}now_playing`, 
       {params: this.coreHttpParams.set('page', pageNumber)});
   }

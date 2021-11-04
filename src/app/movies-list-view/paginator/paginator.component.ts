@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params} from '@angular/router';
+import { map } from 'rxjs/operators';
 
 type INumberTrio = [number, number, number];
 
@@ -8,25 +9,21 @@ type INumberTrio = [number, number, number];
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.css']
 })
-export class PaginatorComponent implements OnInit{
+export class PaginatorComponent implements OnInit {
   @Input() pagesTotal: number;
   @Input() currentPage: number;
   @Output() pageChanged = new EventEmitter<number>();
 
-  pageNumberTrio: INumberTrio = [1, 2, 3];
+  pageNumberTrio: INumberTrio;
 
-  constructor(private activatedRoute: ActivatedRoute,
-    private router: Router) {}
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    if (!this.currentPage) {
-      this.changePage(1);
-    }
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
-      this.currentPage = +params.page;
-      if (this.pagesTotal) {
-        this.pageNumberTrio = this.constructNumberTrio(this.currentPage, this.pagesTotal);
-      }
+    this.activatedRoute.queryParams.pipe(
+      map((params: Params) => +params.page || 1)
+    ).subscribe((page: number) => {
+      this.currentPage = page;
+      this.pageNumberTrio = this.constructNumberTrio(page, this.pagesTotal);
     });
   }
 
@@ -47,7 +44,5 @@ export class PaginatorComponent implements OnInit{
     }
     return [ toPage - 1 , toPage, toPage + 1];
   }
-
-
 
 }
