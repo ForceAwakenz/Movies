@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChange, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router';
 import { map } from 'rxjs/operators';
 
@@ -20,11 +20,21 @@ export class PaginatorComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.pipe(
-      map((params: Params) => +params.page || 1)
+      map((params: Params) => +params.page) // why I need || 1 ?, why doesn't it renew in OnChanges
     ).subscribe((page: number) => {
       this.currentPage = page;
-      this.pageNumberTrio = this.constructNumberTrio(page, this.pagesTotal);
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('currentPage' in changes) {
+      console.log(this.currentPage, this.pagesTotal)
+      this.pageNumberTrio = this.constructNumberTrio(this.currentPage, this.pagesTotal);
+      console.log(this.pageNumberTrio)
+    }
+    if ('pagesTotal' in changes) {
+      this.pageNumberTrio = this.constructNumberTrio(this.currentPage, this.pagesTotal);
+    }
   }
 
   existsIn(targetNumber: number, inRange: number): boolean {
