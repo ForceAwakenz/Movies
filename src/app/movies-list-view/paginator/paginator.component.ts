@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 type INumberTrio = [number, number, number];
@@ -11,6 +11,7 @@ type INumberTrio = [number, number, number];
 export class PaginatorComponent implements OnInit{
   @Input() pagesTotal: number;
   @Input() currentPage: number;
+  @Output() pageChanged = new EventEmitter<number>();
 
   pageNumberTrio: INumberTrio = [1, 2, 3];
 
@@ -34,8 +35,7 @@ export class PaginatorComponent implements OnInit{
   }
 
   changePage(moveToPage: number): void {
-    this.currentPage = moveToPage;
-    this.router.navigate(['/movies'], {queryParams: {'page': moveToPage}});
+    this.pageChanged.emit(moveToPage);
   }
 
   private constructNumberTrio(toPage: number, pagesTotal: number): INumberTrio {
@@ -47,5 +47,7 @@ export class PaginatorComponent implements OnInit{
     }
     return [ toPage - 1 , toPage, toPage + 1];
   }
+
+
 
 }
