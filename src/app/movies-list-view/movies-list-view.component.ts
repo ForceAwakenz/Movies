@@ -18,7 +18,15 @@ export class MoviesListViewComponent implements OnInit {
     private activatedRoute: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
+    this.refreshMoviesList();
+  }
 
+  onPageChanged(gotoPage: number): void {
+    this.currentPage = gotoPage;
+    this.router.navigate(['movies'], { queryParams: {page: gotoPage}});
+  }
+
+  private refreshMoviesList() {
     this.activatedRoute.queryParams.pipe( 
       map((params: Params) => params.page), 
       switchMap(page => this.movieDataService.getMoviesListResponse$(page))
@@ -27,12 +35,6 @@ export class MoviesListViewComponent implements OnInit {
         this.moviesListResponse = data;
         this.totalPages = data.total_pages;
       });
-
-  }
-
-  onPageChanged(gotoPage: number): void {
-    this.currentPage = gotoPage;
-    this.router.navigate(['movies'], { queryParams: {page: gotoPage}});
   }
 
 }
