@@ -1,11 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IMovie } from 'src/app/shared/interfaces/movie.interface';
 import { map } from 'rxjs/operators';
 import { IMoviesListResponse } from '../interfaces/movies-list-response';
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +11,17 @@ import { IMoviesListResponse } from '../interfaces/movies-list-response';
 export class MovieDataService {
   private movieApiBaseUrl = 'http://api.themoviedb.org/3/movie/';
   private movieApiKey = 'ebea8cfca72fdff8d2624ad7bbf78e4c';
+  private coreHttpParams = new HttpParams().set('api_key', this.movieApiKey);
 
-  constructor(private http: HttpClient) { 
-  }
+  constructor(private http: HttpClient) {}
 
-  getNowPlayingMovies(): Observable<IMovie[]> {
-    return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}now_playing?api_key=${this.movieApiKey}`)
-      .pipe( 
-        map((data: IMoviesListResponse) => data.results) 
-      );
+  getMoviesListResponse$(pageNumber: number): Observable<IMoviesListResponse> {
+    return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}now_playing`, 
+      {params: this.coreHttpParams.set('page', pageNumber)});
   }
 
   getMovieById(id: string):Observable<IMovie> { 
-    return this.http.get<IMovie>(`${this.movieApiBaseUrl}674025?api_key=${this.movieApiKey}`);
+    return this.http.get<IMovie>(`${this.movieApiBaseUrl}674025`, {params: this.coreHttpParams});
   }
 
 }

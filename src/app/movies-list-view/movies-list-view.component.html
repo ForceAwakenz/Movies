@@ -1,2 +1,8 @@
 <app-movie-category-header categoryHeader="Now playing"></app-movie-category-header>
-<app-movies></app-movies>
+<app-movies *ngIf="moviesList" [moviesList]="moviesList"></app-movies>
+<app-paginator 
+    *ngIf="totalPages" 
+    [pagesTotal]="totalPages" 
+    [currentPage]="currentPage" 
+    (pageChanged)="onPageChanged($event)">
+</app-paginator>

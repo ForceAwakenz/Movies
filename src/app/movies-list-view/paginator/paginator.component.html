@@ -1,0 +1,32 @@
+<div id="paginator">
+    <table>
+        <tr>
+            <ng-container *ngIf="pageInRange(currentPage - 1 , pagesTotal)">
+                <td (click)="changePage(1)">
+                    First
+                </td>
+                <td (click)="changePage(currentPage - 1)">
+                        Prev
+                </td>
+            </ng-container>
+            <td *ngIf="pageInRange(currentPage - 2 , pagesTotal)" style="cursor: default;">...</td>
+
+            <td *ngFor="let pageNumber of pageNumberTrio"
+                (click)="changePage(pageNumber)"
+                [ngStyle]="{color: currentPage === pageNumber ? '#009494' : '' }">
+                    {{pageNumber}}
+            </td>
+
+            <td *ngIf="pageInRange(currentPage + 2, pagesTotal)" style="cursor: default;">...</td>
+            <ng-container *ngIf="pageInRange(currentPage + 1, pagesTotal)">
+                <td (click)="changePage(currentPage + 1)">
+                    Next
+                </td>
+                <td (click)="changePage(pagesTotal)">
+                    Last
+                </td>
+            </ng-container>
+        </tr>
+    </table>
+</div>
+

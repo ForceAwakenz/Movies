@@ -7,6 +7,8 @@ import { MovieItemComponent } from './movie-item/movie-item.component';
 import { HighlightDirective } from '../shared/directives/highlight.directive';
 import { MoviesListViewComponent } from './movies-list-view.component';
 import { MovieCategoryHeaderComponent } from './movie-category-header/movie-category-header.component';
+import { PaginatorComponent } from './paginator/paginator.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [    
@@ -14,10 +16,12 @@ import { MovieCategoryHeaderComponent } from './movie-category-header/movie-cate
     MovieItemComponent,
     HighlightDirective,
     MoviesListViewComponent,
-    MovieCategoryHeaderComponent
+    MovieCategoryHeaderComponent,
+    PaginatorComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     MoviesComponent,
