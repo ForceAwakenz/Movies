@@ -1,14 +1,7 @@
-a {
-    text-decoration: none;
+
+#paginator table, #paginator td {
     color: #505050;
     cursor: pointer;
-}
-
-a:visited {
-    color: #505050;;
-}
-
-table, td {
     border: 2px solid #aaaaaa;
     border-collapse: collapse;
     padding: 4px 6px;

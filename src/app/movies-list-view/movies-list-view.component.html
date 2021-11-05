@@ -1,3 +1,8 @@
 <app-movie-category-header categoryHeader="Now playing"></app-movie-category-header>
-<app-movies [moviesList]="moviesListResponse?.results"></app-movies> <!-- how to deal here with an error?? --> 
-<app-paginator [pagesTotal]="totalPages" [currentPage]="currentPage" (pageChanged)="onPageChanged($event)"></app-paginator>
+<app-movies *ngIf="moviesList" [moviesList]="moviesList"></app-movies>
+<app-paginator 
+    *ngIf="totalPages" 
+    [pagesTotal]="totalPages" 
+    [currentPage]="currentPage" 
+    (pageChanged)="onPageChanged($event)">
+</app-paginator>

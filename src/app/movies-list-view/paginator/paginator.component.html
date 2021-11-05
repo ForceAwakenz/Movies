@@ -2,38 +2,28 @@
     <table>
         <tr>
             <ng-container *ngIf="pageInRange(currentPage - 1 , pagesTotal)">
-            <td>
-                <a (click)="changePage(1)">
+                <td (click)="changePage(1)">
                     First
-                </a>
-            </td>
-                <td>
-                    <a (click)="changePage(currentPage - 1)">
+                </td>
+                <td (click)="changePage(currentPage - 1)">
                         Prev
-                    </a>
                 </td>
             </ng-container>
-            <td *ngIf="pageInRange(currentPage - 2 , pagesTotal)">...</td>
+            <td *ngIf="pageInRange(currentPage - 2 , pagesTotal)" style="cursor: default;">...</td>
 
-            <td *ngFor="let pageNumber of pageNumberTrio">
-                <a  
+            <td *ngFor="let pageNumber of pageNumberTrio"
                 (click)="changePage(pageNumber)"
                 [ngStyle]="{color: currentPage === pageNumber ? '#009494' : '' }">
                     {{pageNumber}}
-                </a>
             </td>
 
-            <td *ngIf="pageInRange(currentPage + 2, pagesTotal)">...</td>
+            <td *ngIf="pageInRange(currentPage + 2, pagesTotal)" style="cursor: default;">...</td>
             <ng-container *ngIf="pageInRange(currentPage + 1, pagesTotal)">
-                <td>
-                    <a (click)="changePage(currentPage + 1)">
-                        Next
-                    </a>
+                <td (click)="changePage(currentPage + 1)">
+                    Next
                 </td>
-                <td>
-                    <a (click)="changePage(pagesTotal)">
-                        Last
-                    </a>
+                <td (click)="changePage(pagesTotal)">
+                    Last
                 </td>
             </ng-container>
         </tr>
