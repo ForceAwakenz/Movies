@@ -10,23 +10,25 @@ import { MovieDataService } from '../shared/services/movie-data.service';
   styleUrls: ['./movies-list-view.component.css']
 })
 export class MoviesListViewComponent implements OnInit {
-  moviesListResponse: IMoviesListResponse;
-  currentPage: number = 1;
+  moviesListResponse: IMoviesListResponse; // 
+  currentPage = 1;
   totalPages: number;
 
-  constructor(private movieDataService: MovieDataService,
-    private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(
+    private movieDataService: MovieDataService,
+    private activatedRoute: ActivatedRoute, 
+    private router: Router) {}
 
   ngOnInit() {
     this.refreshMoviesList();
   }
 
-  onPageChanged(gotoPage: number): void {
-    this.currentPage = gotoPage;
-    this.router.navigate(['movies'], { queryParams: {page: gotoPage}});
+  onPageChanged(newPage: number): void {
+    this.currentPage = newPage;
+    this.router.navigate(['movies'], { queryParams: {page: newPage}});
   }
 
-  private refreshMoviesList() {
+  private refreshMoviesList(): void {
     this.activatedRoute.queryParams.pipe( 
       map((params: Params) => params.page), 
       switchMap(page => this.movieDataService.getMoviesListResponse$(page))

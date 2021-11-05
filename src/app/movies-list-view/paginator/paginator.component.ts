@@ -1,6 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChange, SimpleChanges } from '@angular/core';
-import { ActivatedRoute, Params} from '@angular/router';
-import { map } from 'rxjs/operators';
+import { Component, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 
 type INumberTrio = [number, number, number];
 
@@ -9,35 +7,20 @@ type INumberTrio = [number, number, number];
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.css']
 })
-export class PaginatorComponent implements OnInit {
+export class PaginatorComponent implements OnChanges {
   @Input() pagesTotal: number;
   @Input() currentPage: number;
   @Output() pageChanged = new EventEmitter<number>();
 
   pageNumberTrio: INumberTrio;
 
-  constructor(private activatedRoute: ActivatedRoute) {}
-
-  ngOnInit() {
-    this.activatedRoute.queryParams.pipe(
-      map((params: Params) => +params.page) // why I need || 1 ?, why doesn't it renew in OnChanges
-    ).subscribe((page: number) => {
-      this.currentPage = page;
-    });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if ('currentPage' in changes) {
-      console.log(this.currentPage, this.pagesTotal)
-      this.pageNumberTrio = this.constructNumberTrio(this.currentPage, this.pagesTotal);
-      console.log(this.pageNumberTrio)
-    }
-    if ('pagesTotal' in changes) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('currentPage' in changes || 'pagesTotal' in changes) {
       this.pageNumberTrio = this.constructNumberTrio(this.currentPage, this.pagesTotal);
     }
   }
 
-  existsIn(targetNumber: number, inRange: number): boolean {
+  pageInRange(targetNumber: number, inRange: number): boolean {
     return  targetNumber >= 1 && targetNumber <= inRange;
   }
 
@@ -45,14 +28,14 @@ export class PaginatorComponent implements OnInit {
     this.pageChanged.emit(moveToPage);
   }
 
-  private constructNumberTrio(toPage: number, pagesTotal: number): INumberTrio {
-    if (!this.existsIn(toPage - 1, pagesTotal)) {
-      toPage++;
+  private constructNumberTrio(newActivePage: number, pagesTotal: number): INumberTrio {
+    if (!this.pageInRange(newActivePage - 1, pagesTotal)) {
+      newActivePage++;
     }
-    if (!this.existsIn(toPage + 1, pagesTotal)) {
-      toPage--;
+    if (!this.pageInRange(newActivePage + 1, pagesTotal)) {
+      newActivePage--;
     }
-    return [ toPage - 1 , toPage, toPage + 1];
+    return [ newActivePage - 1 , newActivePage, newActivePage + 1];
   }
 
 }

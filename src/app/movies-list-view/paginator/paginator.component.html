@@ -1,7 +1,7 @@
 <div id="paginator">
     <table>
         <tr>
-            <ng-container *ngIf="existsIn(currentPage - 1 , pagesTotal)">
+            <ng-container *ngIf="pageInRange(currentPage - 1 , pagesTotal)">
             <td>
                 <a (click)="changePage(1)">
                     First
@@ -13,18 +13,18 @@
                     </a>
                 </td>
             </ng-container>
-            <td *ngIf="existsIn(currentPage - 2 , pagesTotal)">...</td>
+            <td *ngIf="pageInRange(currentPage - 2 , pagesTotal)">...</td>
 
-            <td *ngFor="let pageNumber of pageNumberTrio; let indx = index;">
+            <td *ngFor="let pageNumber of pageNumberTrio">
                 <a  
-                (click)="changePage(pageNumberTrio[indx])"
-                [ngStyle]="{color: currentPage === pageNumberTrio[indx] ? '#009494' : '' }">
-                    {{pageNumberTrio[indx]}}
+                (click)="changePage(pageNumber)"
+                [ngStyle]="{color: currentPage === pageNumber ? '#009494' : '' }">
+                    {{pageNumber}}
                 </a>
             </td>
 
-            <td *ngIf="existsIn(currentPage + 2, pagesTotal)">...</td>
-            <ng-container *ngIf="existsIn(currentPage + 1, pagesTotal)">
+            <td *ngIf="pageInRange(currentPage + 2, pagesTotal)">...</td>
+            <ng-container *ngIf="pageInRange(currentPage + 1, pagesTotal)">
                 <td>
                     <a (click)="changePage(currentPage + 1)">
                         Next
