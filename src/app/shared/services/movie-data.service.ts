@@ -2,7 +2,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IMovie } from 'src/app/shared/interfaces/movie.interface';
-import { map } from 'rxjs/operators';
 import { IMoviesListResponse } from '../interfaces/movies-list-response';
 
 @Injectable({
@@ -24,7 +23,7 @@ export class MovieDataService {
     return this.http.get<IMovie>(`${this.movieApiBaseUrl}movie/674025`, {params: this.coreHttpParams});
   }
 
-  getMoviesByKeyword(searchPhrase: string) {
+  getMoviesByKeyword(searchPhrase: string): Observable<IMoviesListResponse>  {
     return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}search/movie`, 
       {params: this.coreHttpParams.set('query', searchPhrase)});
   }

@@ -13,4 +13,8 @@ export class SearchElementComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onMovieClick() {
+    console.log('should redirect to ', this.movie.id)
+  }
+
 }

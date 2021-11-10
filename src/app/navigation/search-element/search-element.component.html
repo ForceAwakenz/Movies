@@ -1,4 +1,5 @@
-<div>
-<img class="search-element__poster" [src]="'http://image.tmdb.org/t/p/w342' + movie['poster_path']" alt="">
+<div (click)="onMovieClick()">
+<img class="poster" [src]="'http://image.tmdb.org/t/p/w342' + movie['poster_path']" alt="">
 <span>{{movie['original_title']}}</span>
+<span class="vote">{{movie['vote_average']}}</span>
 </div>

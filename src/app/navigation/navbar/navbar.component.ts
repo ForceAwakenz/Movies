@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 import { SearchSnippetComponent } from '../search-snippet/search-snippet.component';
 import { MovieDataService } from '../../shared/services/movie-data.service';
 
@@ -25,19 +25,19 @@ export class NavbarComponent implements OnInit {
     this.searchControl.valueChanges.pipe(
       debounceTime(500),
       distinctUntilChanged(),
+      filter(searchPhrase => searchPhrase.length > 2),
       switchMap((searchPhrase) => this.movieDataService.getMoviesByKeyword(searchPhrase))
     ).subscribe(movies => {
-      console.log(movies);
-
+      let cleanMoviesList = movies.results.filter(movie => movie['poster_path']);
       if (!this.dialogRef) {
         this.dialogRef = this.dialog.open(SearchSnippetComponent, {
-          data: movies.results,
+          data: cleanMoviesList,
           ...this.getMatDialogBaseConfig()
           }
         );
         return;
       }
-      this.dialogRef.componentInstance.movies = movies.results;   
+      this.dialogRef.componentInstance.movies = cleanMoviesList;   
     })
   }
 
