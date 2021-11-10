@@ -11,3 +11,6 @@
     box-shadow: 6px 6px 2px 1px rgba(0, 0, 255, 0.4);
     transition: all 100ms;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

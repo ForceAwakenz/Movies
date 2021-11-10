@@ -9,7 +9,6 @@ import { MoviesListViewComponent } from './movies-list-view.component';
 import { MovieCategoryHeaderComponent } from './movie-category-header/movie-category-header.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { RouterModule } from '@angular/router';
-import { SearchSnippetComponent } from './search-snippet/search-snippet.component';
 
 @NgModule({
   declarations: [    
@@ -19,7 +18,6 @@ import { SearchSnippetComponent } from './search-snippet/search-snippet.componen
     MoviesListViewComponent,
     MovieCategoryHeaderComponent,
     PaginatorComponent,
-    SearchSnippetComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +27,9 @@ import { SearchSnippetComponent } from './search-snippet/search-snippet.componen
     MoviesComponent,
     MovieItemComponent,
     HighlightDirective,
-    MoviesListViewComponent
+    MoviesListViewComponent,
+    MovieCategoryHeaderComponent,
+    PaginatorComponent,
   ],
   providers: [MovieDataService]
 })

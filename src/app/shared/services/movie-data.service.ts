@@ -9,19 +9,24 @@ import { IMoviesListResponse } from '../interfaces/movies-list-response';
   providedIn: 'root'
 })
 export class MovieDataService {
-  private movieApiBaseUrl = 'http://api.themoviedb.org/3/movie/';
+  private movieApiBaseUrl = 'http://api.themoviedb.org/3/';
   private movieApiKey = 'ebea8cfca72fdff8d2624ad7bbf78e4c';
   private coreHttpParams = new HttpParams().set('api_key', this.movieApiKey);
 
   constructor(private http: HttpClient) {}
 
   getMoviesListResponse$(pageNumber: number): Observable<IMoviesListResponse> {
-    return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}now_playing`, 
+    return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}movie/now_playing`, 
       {params: this.coreHttpParams.set('page', pageNumber)});
   }
 
   getMovieById(id: string):Observable<IMovie> { 
-    return this.http.get<IMovie>(`${this.movieApiBaseUrl}674025`, {params: this.coreHttpParams});
+    return this.http.get<IMovie>(`${this.movieApiBaseUrl}movie/674025`, {params: this.coreHttpParams});
+  }
+
+  getMoviesByKeyword(searchPhrase: string) {
+    return this.http.get<IMoviesListResponse>(`${this.movieApiBaseUrl}search/movie`, 
+      {params: this.coreHttpParams.set('query', searchPhrase)});
   }
 
 }
