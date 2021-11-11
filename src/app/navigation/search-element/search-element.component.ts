@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { IMovie } from 'src/app/shared/interfaces/movie.interface';
 
 @Component({
@@ -8,13 +9,15 @@ import { IMovie } from 'src/app/shared/interfaces/movie.interface';
 })
 export class SearchElementComponent implements OnInit {
   @Input() movie: IMovie;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onMovieClick() {
-    console.log('should redirect to ', this.movie.id)
+    // console.log('should redirect to ', this.movie.id)
+    this.router.navigate(['movies', this.movie.id])
+    
   }
 
 }
