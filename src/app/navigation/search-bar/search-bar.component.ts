@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, filter, map, switchMap, take } from 'rxjs/operators';
+import { Helper } from 'src/app/shared/helpers/helper';
 import { MovieDataService } from 'src/app/shared/services/movie-data.service';
 import { SearchSnippetComponent } from '../search-snippet/search-snippet.component';
 
@@ -32,8 +33,9 @@ export class SearchBarComponent implements OnInit {
       distinctUntilChanged(),
       filter(searchPhrase => searchPhrase.length > 2),
       switchMap((searchPhrase) => this.movieDataService.getMoviesByKeyword(searchPhrase)),
-      map(movieList => movieList.results.slice(0, 5))
+      map(movieList => movieList.results.slice(0, 5)),
     ).subscribe(movies => {
+      movies = Helper.emptyPosterResolver(movies);
       if (!this.dialogRef) {
         this.dialogRef = this.dialog.open(SearchSnippetComponent, {
           data: movies,

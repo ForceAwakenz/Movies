@@ -4,6 +4,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { IMoviesListResponse } from '../shared/interfaces/movies-list-response';
 import { IMovie } from '../shared/interfaces/movie.interface';
 import { MovieDataService } from '../shared/services/movie-data.service';
+import { Helper } from '../shared/helpers/helper';
 
 @Component({
   selector: 'app-now-playing',
@@ -37,7 +38,7 @@ export class MoviesListViewComponent implements OnInit {
       switchMap(page => this.movieDataService.getMoviesListResponse$(page))
     )
       .subscribe((moviesListResponse: IMoviesListResponse) => {
-        this.moviesList = moviesListResponse.results;
+        this.moviesList = Helper.emptyPosterResolver(moviesListResponse.results);
         this.totalPages = moviesListResponse.total_pages;
       });
   }
