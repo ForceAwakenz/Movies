@@ -1,10 +1,4 @@
 <nav>
     <h1 (click)="redirectToMainPage()">Movies</h1>
-        <mat-form-field>
-            <input 
-                matInput
-                #searchInput
-                [formControl]="searchControl"
-                placeholder="Search movies">
-        </mat-form-field>
+    <app-search-bar></app-search-bar>
 </nav>

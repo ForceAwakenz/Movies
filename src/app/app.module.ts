@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SearchSnippetComponent } from './navigation/search-snippet/search-snippet.component';
 import { SearchElementComponent } from './navigation/search-element/search-element.component';
+import { SearchBarComponent } from './navigation/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SearchElementComponent } from './navigation/search-element/search-eleme
     MovieInfoComponentComponent, 
     SearchElementComponent,
     SearchSnippetComponent,
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule,
