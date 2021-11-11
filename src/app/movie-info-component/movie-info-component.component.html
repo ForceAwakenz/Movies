@@ -1,7 +1,4 @@
 <div *ngIf="movie" class="main-item" [ngStyle]= "{'background-image':'url('+getMovieImageUrl(movie.backdrop_path)+')'}">
-    <div class="film-item-main">
-        <p>Movies</p>
-    </div>
     <div class="film-box">
         <img class="poster" [src]="getMovieImageUrl(movie.poster_path)"/>
         <div class="film-info">

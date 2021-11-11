@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, switchMap, take } from 'rxjs/operators';
 import { SearchSnippetComponent } from '../search-snippet/search-snippet.component';
 import { MovieDataService } from '../../shared/services/movie-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,13 +13,13 @@ import { MovieDataService } from '../../shared/services/movie-data.service';
 })
 export class NavbarComponent implements OnInit {
   searchControl: FormControl;
-  searchPhrase: string;
 
   dialogRef: MatDialogRef<SearchSnippetComponent>;
   
   constructor(
     private dialog: MatDialog,
-    private movieDataService: MovieDataService) {}
+    private movieDataService: MovieDataService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.searchControl = new FormControl();
@@ -35,8 +36,17 @@ export class NavbarComponent implements OnInit {
           ...this.getMatDialogBaseConfig()
           }
         );
+
+        this.dialogRef.afterClosed()
+          .pipe(
+            filter(data => data.id),
+            take(1)
+          )
+          .subscribe(data => this.router.navigate(['movies', data.id]));
+
         return;
       }
+      
       this.dialogRef.componentInstance.movies = cleanMoviesList;   
     })
   }
@@ -53,4 +63,7 @@ export class NavbarComponent implements OnInit {
     };
   }
 
+  redirectToMainPage(): void {
+    this.router.navigate(['movies']);
+  }
 }

@@ -20,7 +20,7 @@ export class MovieDataService {
   }
 
   getMovieById(id: string):Observable<IMovie> { 
-    return this.http.get<IMovie>(`${this.movieApiBaseUrl}movie/674025`, {params: this.coreHttpParams});
+    return this.http.get<IMovie>(`${this.movieApiBaseUrl}movie/${id}`, {params: this.coreHttpParams});
   }
 
   getMoviesByKeyword(searchPhrase: string): Observable<IMoviesListResponse>  {

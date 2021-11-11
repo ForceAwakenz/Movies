@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     height: fit-content;
-    margin-top: 100px;
 }
 .film-item-main{
     background-color: gray;

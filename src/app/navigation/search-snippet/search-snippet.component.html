@@ -1,1 +1,5 @@
-<app-search-element *ngFor="let movie of movies |slice:0:5;" [movie]="movie"></app-search-element>
+<app-search-element 
+    *ngFor="let movie of movies |slice:0:5;"
+     [movie]="movie"
+     (onMovieClick)="onMovieClicked(movie.id)">
+</app-search-element>
