@@ -71,7 +71,7 @@ export class SearchBarComponent implements OnInit {
       width: '400px',
       hasBackdrop: false,
       position: {
-        top: '35px',
+        top: '44px',
         left: '70px'
       },
       autoFocus: false

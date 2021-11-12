@@ -1,3 +1,15 @@
+.search-element {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3px;
+}
+
 .poster {
     width: 40px;
+}
+
+.vote {
+    background-color: darkgoldenrod;
 }

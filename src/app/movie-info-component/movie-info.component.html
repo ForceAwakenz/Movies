@@ -1,8 +1,8 @@
-<div *ngIf="movie" class="main-item" [ngStyle]= "{'background-image':'url('+getMovieImageUrl(movie.backdrop_path)+')'}">
+<div *ngIf="movie" class="main-item" [ngStyle]= "{'background-image': 'url(' + movie.backdrop_path + ')'}">
     <div class="film-box">
-        <img class="poster" [src]="getMovieImageUrl(movie.poster_path)"/>
+        <img class="poster" [src]="movie.poster_path"/>
         <div class="film-info">
-            <h3>{{movie?.title}} </h3>
+            <h3>{{movie.title}} </h3>
             <div class="score-info">
                 <p>Score: {{movie.vote_average}}</p>
                 <div class="verticalLine">

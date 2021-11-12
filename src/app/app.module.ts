@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { MoviesListViewModule } from './movies-list-view/movies-list-view.module';
 import { NavbarComponent } from './navigation/navbar/navbar.component';
-import { MovieInfoComponentComponent } from './movie-info-component/movie-info-component.component';
+import { MovieInfoComponent } from './movie-info-component/movie-info.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule} from '@angular/material/form-field';
@@ -19,7 +19,7 @@ import { SearchBarComponent } from './navigation/search-bar/search-bar.component
   declarations: [
     AppComponent,
     NavbarComponent,    
-    MovieInfoComponentComponent, 
+    MovieInfoComponent, 
     SearchElementComponent,
     SearchSnippetComponent,
     SearchBarComponent,
@@ -37,7 +37,7 @@ import { SearchBarComponent } from './navigation/search-bar/search-bar.component
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [SearchSnippetComponent]
+  // entryComponents: [SearchSnippetComponent]
 
 })
 export class AppModule { 

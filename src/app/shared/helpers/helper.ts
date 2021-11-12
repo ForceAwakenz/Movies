@@ -10,7 +10,11 @@ export class Helper {
             movie['poster_path'] = movie['poster_path'] === null
                 ? POSTER_NOT_FOUND_URL
                 : POSTER_IMAGE_BASE_URL + movie['poster_path'];
+            movie['backdrop_path'] = movie['backdrop_path'] === null
+                ? POSTER_NOT_FOUND_URL
+                : POSTER_IMAGE_BASE_URL + movie['backdrop_path'];
             return movie;
         });
     }
+    
 }

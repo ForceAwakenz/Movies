@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MovieInfoComponentComponent } from './movie-info-component.component';
+import { MovieInfoComponent } from './movie-info.component';
 
 describe('MovieInfoComponentComponent', () => {
-  let component: MovieInfoComponentComponent;
-  let fixture: ComponentFixture<MovieInfoComponentComponent>;
+  let component: MovieInfoComponent;
+  let fixture: ComponentFixture<MovieInfoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MovieInfoComponentComponent ]
+      declarations: [ MovieInfoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MovieInfoComponentComponent);
+    fixture = TestBed.createComponent(MovieInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
