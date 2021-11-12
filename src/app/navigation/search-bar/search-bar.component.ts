@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged, filter, map, switchMap, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
 import { Helper } from 'src/app/shared/helpers/helper';
+import { IMovie } from 'src/app/shared/interfaces/movie.interface';
 import { MovieDataService } from 'src/app/shared/services/movie-data.service';
 import { SearchSnippetComponent } from '../search-snippet/search-snippet.component';
 
@@ -23,41 +25,48 @@ export class SearchBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.func();
+    this.searchControlListener$().subscribe(movies => this.fillSearchBar(movies));
   }
 
-  func() {
+  searchControlListener$(): Observable<IMovie[]> {
     this.searchControl = new FormControl();
-    this.searchControl.valueChanges.pipe(
+    return this.searchControl.valueChanges.pipe(
       debounceTime(500),
       distinctUntilChanged(),
       filter(searchPhrase => searchPhrase.length > 2),
       switchMap((searchPhrase) => this.movieDataService.getMoviesByKeyword(searchPhrase)),
       map(movieList => movieList.results.slice(0, 5)),
-    ).subscribe(movies => {
-      movies = Helper.emptyPosterResolver(movies);
-      if (!this.dialogRef) {
-        this.dialogRef = this.dialog.open(SearchSnippetComponent, {
-          data: movies,
-          ...this.getMatDialogBaseConfig()
-          }
-        );
-
-        this.dialogRef.afterClosed()
-          .pipe(
-            filter(data => data.id),
-            take(1)
-          )
-          .subscribe(data => this.router.navigate(['movies', data.id]));
-
-        return;
-      }
+    )
       
-      this.dialogRef.componentInstance.movies = movies;   
-    })
   }
 
-  getMatDialogBaseConfig(): {} {
+  fillSearchBar(movies: IMovie[]): void {
+    movies = Helper.emptyPosterResolver(movies);
+
+    if (!this.dialogRef?.componentInstance) {
+
+      this.dialogRef = this.dialog.open(SearchSnippetComponent, 
+        {
+          data: movies,
+        ...this.getMatDialogBaseConfig()
+        }
+      );
+      
+      this.dialogRef.afterClosed()
+        .pipe(
+          filter(data => data.id),
+        )
+        .subscribe(data => this.router.navigate(['movies', data.id]));
+
+      return;
+
+    }
+        
+    this.dialogRef.componentInstance.movies = movies;   
+
+  }
+      
+  getMatDialogBaseConfig() {
     return {
       width: '400px',
       hasBackdrop: false,
